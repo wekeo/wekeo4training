@@ -1,0 +1,17 @@
+{
+  "dataset_id": "EO:MO:DAT:WIND_GLO_PHY_L4_NRT_012_004:cmems_obs-wind_glo_phy_nrt_l4_0.125deg_PT1H_202207",
+  "startdate": "2024-09-20T04:00:00.000Z",
+  "enddate": "2024-10-01T04:00:00.000Z",
+  "bbox": [
+    -99.00460864729645,
+    17.538945458430984,
+    -65.30725117419546,
+    36.827122701611785
+  ],
+  "variables": [
+    "eastward_wind",
+    "northward_wind"
+  ],
+  "itemsPerPage": 200,
+  "startIndex": 0
+}

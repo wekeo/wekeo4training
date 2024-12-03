@@ -1,0 +1,6 @@
+{
+  "dataset_id": "EO:ESA:DAT:SENTINEL-2",
+  "productIdentifier": "S2A_MSIL2A_20240922T161001_N0511_R140_T17RKN_20240922T215405",
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
