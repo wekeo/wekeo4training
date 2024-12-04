@@ -12,3 +12,7 @@ Step 2: Paste the copied folder into a directory outside the "public" directory.
 Step 3: Verify that the project folder and all its contents have been successfully moved to the new location.
 
 After completing these steps, you can run the project in its new location.
+
+Finally:
+Use the "wekeolab" kernel. It is available via the Earth Observation Tools server. If you want to change server, go to the top of the JupyterHub in File->Hub Control Panel, then stop your server and restart it. 
+
