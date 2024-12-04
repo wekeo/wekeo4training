@@ -1,7 +1,7 @@
 Readme of the R Notebook on WEkEO Coastal Interactions
 
 
-Copy/Paste Jupyter_R_WEkEO_Coastal_Interactions outside Public Directory
+Copy/Paste Jupyter_R_WEkEO_Coastal_Interactions outside Public Directory:
 
 Step 1: On the left of the JupyterHub interface. Return to the root of the project folder and copy the entire folder. Here is the path to the folder concerned: 
 	/public/wekeo4training/training_coastal_interactions_2024/Jupyter_R_WEkEO_Coastal_Interactions
@@ -15,7 +15,7 @@ After completing these steps, you can proceed with downloading data files and ru
 
 
 
-Downloading Data Files
+Downloading Data Files:
 
 The data files required to run this project are available via a link provided. Follow these steps to download and install them correctly:
 
@@ -26,3 +26,6 @@ Step 2: Download the data to your computer.
 Step 3: Transfer the files from your computer to the JupyterHub in a “data” folder in Jupyter_R_WEkEO_Coastal_Interactions folder. The "data" folder should be located at the same root as your R notebook and this Readme (outside the "public" folder).
 
 Step 4: If the folder you're uploading is zipped, use the command “unzip folder.zip” in a terminal. Make sure you only have one data folder.
+
+Finally:
+Use the correct kernel, which is the R kernel, where most of the libraries are installed. If any are missing, use the install.packages(”package“) command.
