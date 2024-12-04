@@ -1,9 +1,9 @@
 Readme of the Jupyter Notebook on WEkEO Coastal Interactions
 
 
-Moving Data Out of the Public Directory
+Copy/Paste Jupyter_Notebooks_WEkEO_Coastal_Interactions outside Public Directory:
 
-Step 1: Return to the root of the project folder and copy the entire folder. Here is the path to the folder concerned: 
+Step 1: On the left of the JupyterHub interface. Return to the root of the project folder and copy the entire folder. Here is the path to the folder concerned: 
 	/public/wekeo4training/training_coastal_interactions_2024/Jupyter_Notebooks_WEkEO_Coastal_Interactions
 
 Step 2: Paste the copied folder into a directory outside the "public" directory. 
