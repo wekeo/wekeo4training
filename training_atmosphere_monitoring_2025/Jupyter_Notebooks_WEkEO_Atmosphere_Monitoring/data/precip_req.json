@@ -1,0 +1,14 @@
+{
+  "dataset_id": "EO:ECMWF:DAT:PROJECTIONS_CMIP5_DAILY_SINGLE_LEVELS",
+  "experiment": "amip",
+  "variable": [
+    "mean_precipitation_flux"
+  ],
+  "model": "ipsl_cm5a_lr",
+  "ensemble_member": "r1i1p1",
+  "period": [
+    "19790101-20091231"
+  ],
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
