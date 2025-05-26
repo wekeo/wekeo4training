@@ -1,0 +1,300 @@
+---
+title: "Presentation of the HDA R client and R Studio"
+---
+
+#Vignette
+
+Calling for the dedicated vignette, that serves as a guide to the hdar package
+```{r}
+vignette("hdar")
+```
+
+
+#Installation
+
+First of all, if working on the local machine, install the "hdar" package into R environment. The stable version is available on CRAN:
+
+```{r}
+#if(!require("hdar")){install.packages("hdar")}
+```
+
+The development version of the package, can be installed directly from the EEA's GitHub: 
+
+```{r}
+#devtools::install_github("eea/hdar@develop")
+```
+
+Load the package into your R session when working locally or within the WEkEO workspace: 
+
+```{r}
+library(hdar)
+```
+
+#Authentication
+
+To interact with the HDA service, you need to authenticate by providing your WEkEO username and password. The Client allows you to pass these credentials directly and optionally save them to a configuration file for future use. If credentials are not specified as parameters, the Client will read them from the ~/.hdarc file.
+
+#Step 1. Create and authenticate the Client
+
+##Method 1 (occasional users)
+
+Set up WEkEO credentials directly by passing your username and password:
+
+```{r}
+username <- "your_username"
+password <-"your_password"
+
+#The save_credentials parameter is optional and defaults to FALSE
+client <- Client$new(username, password, save_credentials = TRUE)
+```
+
+##Method 2 (regular users)
+
+Once the credentials are saved, you can initialize the Client without passing the credentials.
+
+```{r}
+client <- Client$new()
+```
+
+#Step 2. Check for authentication
+
+```{r}
+client$get_token()
+```
+
+#Copernicus Terms and Conditions (T&Cs)
+
+Terms and Conditions must be accepted in order to download the data!
+
+
+```{r}
+#Show the T&C for each individual Copernicus service:
+client$show_terms()
+```
+
+
+```{r}
+#See list of T&Cs not accepted by default:
+client$terms_and_conditions()
+```
+
+```{r}
+#For accepting all T&C at once:
+client$terms_and_conditions(term_id = "all")
+```
+
+#Finding datasets
+
+
+```{r}
+#Retrieving a complete list of all datasets:
+all_datasets <- client$datasets()
+```
+
+
+```{r}
+#Listing all the dataset IDs:
+sapply(all_datasets,FUN = function(x){x$dataset_id})
+```
+
+#Filtering datasets
+
+
+```{r}
+#By providing a text pattern:
+filtered_datasets <- client$datasets("crops") #you can change it with any other string pattern, for example, "grasslands", "vegetation", "arctic" etc.
+```
+
+```{r}
+#To list the datasetIDs from the filtered results:
+sapply(filtered_datasets,FUN = function(x){x$dataset_id})
+
+```
+
+```{r}
+#Understanding the results
+client$datasets("EO:EEA:DAT:HRL:CRL") #You can change it with any other datasetID!
+```
+
+#Downloading and visualising specific datasets
+
+For downloading specific datasets, one needs to create a query template. This can be done by two methods: 
+
+  1. Using the WEkEO Viewer to define query parameters
+  2. Using  the "generate_query_template" function
+
+
+In this demonstration, the primary focus will be on utilising the generate_query_template() function.
+```{r}
+#Using the generate_query_template function for creating a query template
+
+query_template <-client$generate_query_template("EO:CRYO:DAT:HRSI:FSC")
+
+query_template
+```
+
+#Modifying query template
+
+```{r}
+#Load the necessary package into the R session
+library(jsonlite)
+
+#Converting JSON template to R list
+query_template <- fromJSON(query_template, flatten = FALSE)
+query_template
+```
+
+```{r}
+# Set a new bounding box
+bbox <- c(6.787914659621623, 59.859732724534126, 7.530816771526541, 60.295699491140624)
+
+query_template$bbox <- bbox 
+
+#query_template$productIdentifier <- "T31TFJ" #parameter is specific for the selected dataset ID
+
+# Limit the time range
+query_template$startdate <- "2024-12-01T00:00:00.000Z"
+query_template$enddate   <- "2024-12-15T00:00:00.000Z"
+query_template
+```
+
+```{r}
+#Converting back to JSON format
+query_template <- toJSON(query_template, auto_unbox = TRUE, digits = 17)
+```
+
+#Search and download data
+
+```{r}
+#Assuming 'client' is already created and authenticated, 'query_template' is defined
+matches <- client$search(query_template) #optionally set a limit
+```
+
+```{r}
+#Display the IDs of the search results
+sapply(matches$results, FUN = function(x) { x$id })
+```
+
+
+```{r}
+#Downloading the matches
+output_directory <- "~/WEkEOEssentials"
+matches$download(output_directory) #optionally set the force parameter to TRUE, or prompt parameter to FALSE
+```
+
+```{r}
+#Listing the downloaded files
+list.files(output_directory)
+```
+
+
+```{r}
+#Decompressing the downloaded data
+
+processing_dir_path <- "~/WEkEOEssentials/Unzipped"
+
+extension <- ".zip"
+for (item in list.files(output_directory)) {
+  cat("Decompressing", item, "... ")
+  if (grepl(paste0(extension, "$"), item)) {
+    file_name <- file.path(output_directory, item)
+    unzip(file_name, exdir = processing_dir_path)
+  }
+  cat("DONE\n")
+}
+```
+
+#Visualision of the downloaded products
+```{r}
+#Load the necessary package for raster data visualisation into the R session
+library("terra")
+```
+
+
+```{r}
+#Visualising selected product from the downloaded files
+
+subdirs <- list.dirs(processing_dir_path, full.names = TRUE, recursive = FALSE)
+folder <- subdirs[2]
+
+tif_files <- list.files(folder, pattern = "\\FSCTOC.tif$", full.names = TRUE)
+
+rasters <- suppressWarnings(lapply(tif_files, rast))
+
+for (r in rasters) {
+  plot(r, main = names(r))
+}
+```
+
+
+```{r}
+#Visualising one selected product across the different folders
+
+parent_dir <- "~/WEkEOEssentials/Unzipped"
+
+target_product <- "FSCTOC"
+
+subdirs <- list.dirs(parent_dir, full.names = TRUE, recursive = FALSE)
+
+rasters <- list()
+folder_names <- c()
+
+for (subdir in subdirs) {
+  tif_files <- list.files(subdir, pattern = paste0("_", target_product, "\\.tif$"), 
+                          full.names = TRUE, ignore.case = TRUE)
+  
+  if (length(tif_files) > 0) {
+    r <- suppressWarnings(rast(tif_files[1]))  
+    rasters[[length(rasters) + 1]] <- r
+    folder_names <- c(folder_names, basename(subdir))
+  }
+}
+
+n <- length(rasters)
+if (n > 0) {
+  cols <- ceiling(sqrt(n))
+  rows <- ceiling(n / cols)
+  par(mfrow = c(rows, cols), mar = c(3, 3, 2, 2))
+  for (i in seq_along(rasters)) {
+    plot(rasters[[i]], main = folder_names[i])
+  }
+  par(mfrow = c(1, 1))
+} else {
+  cat("No matching product files found in any folder.")
+}
+
+```
+
+```{r}
+#Installing the required packages
+if(!require("leaflet")){install.packages("leaflet")}
+if(!require("leafem")){install.packages("leafem")}
+```
+
+```{r}
+#Loading the required packages into R session
+library("leaflet")
+library("sf")
+library("leafem")
+```
+
+```{r}
+#Visualising the defined bounding box and one of the downloaded products on an interactive map
+
+r <- suppressWarnings(rast("~/WEkEOEssentials/Unzipped/FSC_20241210T105421_S2B_T32VMM_V102_1/FSC_20241210T105421_S2B_T32VMM_V102_1_FSCTOC.tif"))
+
+
+map <- leaflet() %>%
+  addProviderTiles(providers$Esri.WorldImagery) %>%
+  addRasterImage(r, opacity = 1, project = TRUE) %>% 
+  setView(lng = bbox[1], lat = bbox[2], zoom = 5) %>%
+  addRectangles(lng1 = bbox[1], lat1 = bbox[2], lng2 = bbox[3], lat2 = bbox[4])
+
+map
+```
+
+#Cleaning up
+
+```{r}
+unlink(output_directory, recursive = TRUE)
+```
