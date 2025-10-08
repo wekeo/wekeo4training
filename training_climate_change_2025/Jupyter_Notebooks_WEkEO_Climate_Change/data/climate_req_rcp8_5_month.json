@@ -1,0 +1,14 @@
+{
+  "dataset_id": "EO:ECMWF:DAT:PROJECTIONS_CMIP5_MONTHLY_SINGLE_LEVELS",
+  "experiment": "rcp_8_5",
+  "variable": [
+    "2m_temperature"
+  ],
+  "model": "ipsl_cm5a_mr",
+  "ensemble_member": "r1i1p1",
+  "period": [
+    "200601-210012"
+  ],
+  "itemsPerPage": 200,
+  "startIndex": 0
+}

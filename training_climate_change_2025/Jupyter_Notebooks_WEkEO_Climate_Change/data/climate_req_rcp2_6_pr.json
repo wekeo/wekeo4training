@@ -1,0 +1,14 @@
+{
+  "dataset_id": "EO:ECMWF:DAT:PROJECTIONS_CMIP5_DAILY_SINGLE_LEVELS",
+  "experiment": "rcp_2_6",
+  "variable": [
+    "mean_precipitation_flux"
+  ],
+  "model": "ipsl_cm5a_mr",
+  "ensemble_member": "r1i1p1",
+  "period": [
+    "20560101-21001231"
+  ],
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
