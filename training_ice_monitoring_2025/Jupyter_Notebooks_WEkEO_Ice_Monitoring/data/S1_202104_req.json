@@ -1,0 +1,6 @@
+{
+    "dataset_id": "EO:ESA:DAT:SENTINEL-1",
+    "productIdentifier": "S1A_EW_GRDM_1SSH_20210403T063440_20210403T063540_037282_04645D_A3B7_COG",
+    "itemsPerPage": 200,
+    "startIndex": 0
+}
