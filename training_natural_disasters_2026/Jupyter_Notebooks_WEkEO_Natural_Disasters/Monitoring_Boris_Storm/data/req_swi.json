@@ -1,0 +1,75 @@
+{
+  "dataset_id": "EO:ECMWF:DAT:CEMS_GLOFAS_HISTORICAL",
+  "system_version": [
+    "version_4_0"
+  ],
+  "hydrological_model": [
+    "lisflood"
+  ],
+  "product_type": [
+    "consolidated"
+  ],
+  "variable": [
+    "soil_wetness_index"
+  ],
+  "hyear": [
+    "2024"
+  ],
+  "hmonth": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12"
+  ],
+  "hday": [
+    "01",
+    "02",
+    "03",
+    "04",
+    "05",
+    "06",
+    "07",
+    "08",
+    "09",
+    "10",
+    "11",
+    "12",
+    "13",
+    "14",
+    "15",
+    "16",
+    "17",
+    "18",
+    "19",
+    "20",
+    "21",
+    "22",
+    "23",
+    "24",
+    "25",
+    "26",
+    "27",
+    "28",
+    "29",
+    "30",
+    "31"
+  ],
+  "data_format": "netcdf",
+  "download_format": "unarchived",
+  "bbox": [
+    13.5,
+    48.5,
+    20,
+    54.5
+  ],
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
