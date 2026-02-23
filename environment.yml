@@ -1,0 +1,49 @@
+name: wekeo4training
+
+channels:
+  - conda-forge
+
+# Use strict priority to avoid mixing incompatible builds
+channel_priority: strict
+
+dependencies:
+  # Core language
+  - python=3.11
+  - pip
+
+  # Jupyter runtime (kernel is required even if not imported in notebooks)
+  - jupyterlab
+  - ipython
+  - ipykernel
+
+  # Scientific stack commonly used across notebooks
+  - numpy
+  - pandas
+  - xarray
+  - matplotlib
+
+  # Geospatial / raster stack (keep on conda-forge to avoid GDAL/PROJ conflicts)
+  - cartopy
+  - geopandas
+  - rasterio
+  - rioxarray
+  - shapely
+  - fiona
+
+  # WEkEO / Mercator HDA client (available on conda-forge)
+  - hda
+
+  # Earthkit packages available on conda-forge
+  - earthkit-data
+  - earthkit-geo
+
+  # Imaging (PIL comes from pillow)
+  - pillow
+
+  # Optional but frequently needed with xarray for larger datasets
+  - dask
+  - netcdf4
+
+  # Pip only for the earthkit meta-package / namespace
+  - pip:
+      - earthkit
