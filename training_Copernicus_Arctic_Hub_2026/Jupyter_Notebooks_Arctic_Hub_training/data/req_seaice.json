@@ -1,0 +1,13 @@
+{
+  "dataset_id": "EO:MO:DAT:ARCTIC_MULTIYEAR_PHY_002_003:cmems_mod_arc_phy_my_topaz4_P1M_202506",
+  "minimum_depth": 0,
+  "maximum_depth": 4000,
+  "startdate": "1992-01-01T00:00:00.000Z",
+  "enddate": "2021-12-31T23:59:59.999Z",
+  "variables": [
+    "siconc"
+  ],
+  "file_format": "netcdf",
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
