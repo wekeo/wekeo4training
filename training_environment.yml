@@ -1,0 +1,39 @@
+name: trainings-python
+
+channels:
+  - conda-forge
+
+dependencies:
+  - python=3.11
+  - pip
+
+  # Jupyter / execution notebooks
+  - ipykernel
+  - nbconvert
+  - nbformat
+  - nbclient
+  - ipython
+
+  # Core scientific stack
+  - numpy
+  - pandas
+  - xarray
+  - matplotlib
+  - pillow
+
+  # Geo / raster / cartography stack
+  - cartopy
+  - fiona
+  - geopandas
+  - pyproj
+  - rasterio
+  - rioxarray
+  - shapely
+
+  # Compatibility for old pkg_resources imports
+  - "setuptools<82"
+
+  # Packages installed via pip
+  - pip:
+      - hda
+      - earthkit
