@@ -138,9 +138,15 @@ conda env remove -n trainings-python -y
 
 ---
 
+## Support & Troubleshooting
+
+If you experience any issues while running the notebooks, have questions, or run into problems installing and setting up the environment, please contact the WEkEO User Support directly via the chat widget at [WEkEO Homepage](https://wekeo.copernicus.eu/).
+  
+---
+
 ## Helpful Resources
 
 * **WEkEO Training Portal:** [events.wekeo.eu](https://events.wekeo.eu/)
 * **WEkEO Video Tutorials & Replays:** [YouTube (@wekeodias6693)](https://www.youtube.com/@wekeodias6693)
-* **WEkEO Documentation & Knowledge Base:** [wekeo.eu/docs](https://www.wekeo.eu/docs)
-* **Harmonized Data Access (HDA) Python Client:** [pypi.org/project/hda](https://pypi.org/project/hda/)
+* **WEkEO Documentation & Knowledge Base:** [WEkEO Help center](https://help.wekeo.eu/en/)
+* **Harmonized Data Access (HDA) Python Client:** [How to use the HDA API in Python?](https://help.wekeo.eu/en/articles/6751608-how-to-use-the-hda-api-in-python)
