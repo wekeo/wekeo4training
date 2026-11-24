@@ -1,0 +1,15 @@
+{
+  "dataset_id": "EO:CLMS:DAT:NDVI_300M_10_DAILY_V3",
+  "bbox": [
+    -3.1841888382107344,
+    36.88917897574596,
+    -1.9799968391845464,
+    37.35108533076001
+  ],
+  "startdate": "2020-09-15T00:00:00.000Z",
+  "enddate": "2020-09-25T23:59:59.999Z",
+  "fileFormat": "nc",
+  "sortOrder": "ASC",
+  "itemsPerPage": 200,
+  "startIndex": 0
+}
