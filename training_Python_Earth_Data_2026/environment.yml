@@ -1,0 +1,14 @@
+name: base
+channels:
+  - conda-forge
+dependencies:
+  - cartopy=0.26.0
+  - matplotlib=3.11.2
+  - numpy
+  - pip
+  - python=3.13.13
+  - xarray=2026.7.0
+  - ipywidgets  
+  - pip:
+      - hda==2.40  
+      - pandas==2.3.3
